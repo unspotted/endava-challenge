@@ -1,0 +1,14 @@
+#!/bin/bash
+
+sites=("aws.amazon.com" "www.python.org" "github.com" "www.dnevnik.bg" "initlab.org" "getfedora.org" "duckduckgo.com" "news.ycombinator.com" "mynoise.net" "www.last.fm")
+
+for page in ${sites[@]}; do
+	wget -qO $page $page
+	grep -c "href=" $page > "${page}_href_count"
+done
+
+# Delete result files
+rm *_href_count
+
+#display execution time in seconds
+echo "Execution time: $SECONDS seconds"
